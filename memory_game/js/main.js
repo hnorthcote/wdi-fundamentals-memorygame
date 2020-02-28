@@ -27,20 +27,20 @@ let cardsInPlay = [];
 
 //if (cardsInPlay.length === 2) {
 function checkForMatch() {
-		
+	
 	if (cardsInPlay[0] === cardsInPlay[1]) {
 		console.log("You found a match!");
 	} else {
 		console.log("Sorry try again.");
-	}
+	};
 }
 
 
 
-function flipCard(cardId) {
-
-
+function flipCard() {
+let cardId = this.getAttribute('data-id')
 checkForMatch();
+this.setAttribute('src', cards[cardsId].cardImage )
 if (cardsInPlay.length === 2) {
 	if (cardOne === cardTwo) {
 		alert('You found a match!');
@@ -56,12 +56,14 @@ console.log(cards[cardId].suit);
 
 }
 
-flipCard(0);
-flipCard(2);
 
+function createBoard() {
+	for (let i =0; i < cardsInPlay.length; i++) {
+		let cardElement = document.createElement('img');
+		cardElement.setAttribute("src", "images/back.png");
+		cardElement.setAttribute("data-id", i);
+		cardElement.addEventListener('click', flipCard);
+		document.getElementById('game-board').appendChild(cardElement);
 
-/*
-
-let cardThree = cards[1];
-let cardFour = cards[3];
-*/
+	}
+createBoard();
